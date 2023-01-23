@@ -41,7 +41,7 @@ class TableCellView: UITableViewCell {
     }
     
     //MARK: - Setup all the views of this class
-    func setupAllTheViews() {
+    private func setupAllTheViews() {
         setupMainView()
         setupSecurityStatusIcon()
         setupDoorStatusIcon()
@@ -51,13 +51,13 @@ class TableCellView: UITableViewCell {
     }
     
     
-    func setupMainView() {
+    private func setupMainView() {
         layer.cornerRadius = 15.0
         layer.borderWidth = 1
         layer.borderColor = UIColor(red: 0.89, green: 0.918, blue: 0.918, alpha: 1).cgColor
     }
     
-    func setupSecurityStatusIcon() {
+    private func setupSecurityStatusIcon() {
         addSubview(securityStatusIcon)
         securityStatusIcon.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(18)
@@ -65,7 +65,7 @@ class TableCellView: UITableViewCell {
         }
     }
     
-    func setupDoorStatusIcon() {
+    private func setupDoorStatusIcon() {
         addSubview(doorStatusIcon)
         doorStatusIcon.snp.makeConstraints { make in
             if doorStatusIcon.image == Images.doorLoadingIcon {
@@ -79,7 +79,7 @@ class TableCellView: UITableViewCell {
         }
     }
     
-    func setupDoorName() {
+    private func setupDoorName() {
         addSubview(doorName)
         doorName.font = UIFont(name: Fonts.customFontBold, size: 16)
         doorName.textColor = UIColor(red: 0.196, green: 0.216, blue: 0.333, alpha: 1)
@@ -89,7 +89,7 @@ class TableCellView: UITableViewCell {
         }
     }
     
-    func setupDoorLocationName() {
+    private func setupDoorLocationName() {
         addSubview(doorLocationName)
         doorLocationName.textColor = UIColor(red: 0.725, green: 0.725, blue: 0.725, alpha: 1)
         doorLocationName.font = UIFont(name: Fonts.customFontRegular, size: 14)
@@ -99,7 +99,7 @@ class TableCellView: UITableViewCell {
         }
     }
     
-    func setupDidTapLockUnlockButton() {
+    private func setupDidTapLockUnlockButton() {
         addSubview(didTapLockUnlockButton)
         didTapLockUnlockButton.titleLabel?.font = UIFont(name: Fonts.customFontBold, size: 15)
         didTapLockUnlockButton.snp.makeConstraints { make in
@@ -131,7 +131,7 @@ class TableCellView: UITableViewCell {
     }
     
     //This method is responsible for filling the cell with data
-    func setupDoorCellWithData(status: DoorStatuses) {
+    private func setupDoorCellWithData(status: DoorStatuses) {
         securityStatusIcon.image = Images.securityInstallingIcon
         doorStatusIcon.image = Images.doorLoadingIcon
         switch status {
