@@ -18,7 +18,7 @@ import UIKit
  - view bottomFogEffectView (creates a "fog effect" at the bottom of the screen)
  
  Additional instances include:
- - loadedAPIData - received and decoded data (from the file data.json which is located in the root of the project)
+ - loadedDoorData - received and decoded data (from the file data.json which is located in the root of the project)
  - timer, activityIndicator - instances of the UITimer and UIActivityIndicatorView classes, respectively,
    which help to simulate uploading data via API
  
