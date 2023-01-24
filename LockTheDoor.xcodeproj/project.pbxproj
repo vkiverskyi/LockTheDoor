@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F828F04D29801D4A00E9EF37 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F828F04C29801D4A00E9EF37 /* APIManager.swift */; };
 		F8B6E8C5296AD87500E2B497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6E8C4296AD87500E2B497 /* AppDelegate.swift */; };
 		F8B6E8C7296AD87500E2B497 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6E8C6296AD87500E2B497 /* SceneDelegate.swift */; };
 		F8B6E8CE296AD87600E2B497 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F8B6E8CD296AD87600E2B497 /* Assets.xcassets */; };
@@ -20,10 +21,11 @@
 		F8B6E8EE29703F7D00E2B497 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6E8ED29703F7D00E2B497 /* Constants.swift */; };
 		F8B6E8F929708C6400E2B497 /* TableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6E8F829708C6400E2B497 /* TableCellView.swift */; };
 		F8B6E8FF2972EAE900E2B497 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = F8B6E8FE2972EAE900E2B497 /* data.json */; };
-		F8B6E9012972EE5000E2B497 /* API Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6E9002972EE5000E2B497 /* API Data.swift */; };
+		F8B6E9012972EE5000E2B497 /* DoorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6E9002972EE5000E2B497 /* DoorData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F828F04C29801D4A00E9EF37 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		F8B6E8C1296AD87500E2B497 /* LockTheDoor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockTheDoor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8B6E8C4296AD87500E2B497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F8B6E8C6296AD87500E2B497 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,7 +40,7 @@
 		F8B6E8ED29703F7D00E2B497 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F8B6E8F829708C6400E2B497 /* TableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellView.swift; sourceTree = "<group>"; };
 		F8B6E8FE2972EAE900E2B497 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = data.json; path = LockTheDoor/Resources/data.json; sourceTree = SOURCE_ROOT; };
-		F8B6E9002972EE5000E2B497 /* API Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "API Data.swift"; sourceTree = "<group>"; };
+		F8B6E9002972EE5000E2B497 /* DoorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +126,8 @@
 		F8B6E8EA29702F6400E2B497 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F8B6E9002972EE5000E2B497 /* API Data.swift */,
+				F828F04C29801D4A00E9EF37 /* APIManager.swift */,
+				F8B6E9002972EE5000E2B497 /* DoorData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -218,8 +221,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F828F04D29801D4A00E9EF37 /* APIManager.swift in Sources */,
 				F8B6E8C5296AD87500E2B497 /* AppDelegate.swift in Sources */,
-				F8B6E9012972EE5000E2B497 /* API Data.swift in Sources */,
+				F8B6E9012972EE5000E2B497 /* DoorData.swift in Sources */,
 				F8B6E8EE29703F7D00E2B497 /* Constants.swift in Sources */,
 				F8B6E8E8296B01A200E2B497 /* Apple Devices Enums.swift in Sources */,
 				F8B6E8F929708C6400E2B497 /* TableCellView.swift in Sources */,

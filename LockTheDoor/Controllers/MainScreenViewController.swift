@@ -27,29 +27,38 @@ import UIKit
 class MainScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - Instances
-    let companyLogo = UIImage()
-    let settingsButton = UIButton()
-    let greetingsLabel = UILabel()
-    let homeIcon = UIImage()
-    let typeOfVerificationLabel = UILabel()
-    let passwordButton = UIButton()
-    let tableView = UITableView()
-    var loadedAPIData: Result?
-    let cell = TableCellView()
-    var timer = Timer()
-    var boolSwitcher = false
-    let bottomFogEffectView = UIView()
-    var activityIndicator = UIActivityIndicatorView()
+    private let companyLogo = UIImage()
+    private let settingsButton = UIButton()
+    private let greetingsLabel = UILabel()
+    private let homeIcon = UIImage()
+    private let typeOfVerificationLabel = UILabel()
+    private let passwordButton = UIButton()
+    private let tableView = UITableView()
+    private var loadedDoorData: DoorData?
+    private let cell = TableCellView()
+    private var timer = Timer()
+    private var boolSwitcher = false
+    private let bottomFogEffectView = UIView()
+    private var activityIndicator = UIActivityIndicatorView()
 
     //MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupAllTheViews()
-        //The animation simulates uploading data via the API
+        //The animation simulates start uploading data via the API
         activityIndicator.startAnimating()
-        loadAPIData()
-       
+        /*
+         Transfer data from the APIManager() to this controller and reload table data.
+         Also stops simulates uploading data from the server via the API
+         by stop animating activity indicator.
+         */
+        APIManager.shared.getDoorData { [weak self] data in
+            guard let self else { return }
+                self.loadedDoorData = data
+                self.tableView.reloadData()
+                self.activityIndicator.stopAnimating()
+        }
     }
     
     //MARK: - Setup all the views of this class
@@ -196,7 +205,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return loadedAPIData?.data.count ?? 0
+        return loadedDoorData?.data.count ?? 0
     }
     
     // Use empty view of header in section for adding space between sections
@@ -211,7 +220,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdenifier) as! TableCellView
-        let dataForCell = loadedAPIData?.data[indexPath.section]
+        let dataForCell = loadedDoorData?.data[indexPath.section]
         cell.chooseAndSetupDoorCellToTable(cell: dataForCell!, checkSwitcher: boolSwitcher, currentDoorStatus: dataForCell!.statusLocked)
         return cell
     }
@@ -237,7 +246,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.reloadSections([indexPath.section] , with: .fade)
         
         // This assignment simulates a "PUT" request, which should change the status of the door: open/closed
-        loadedAPIData!.data[indexPath.section].statusLocked = !loadedAPIData!.data[indexPath.section].statusLocked
+        loadedDoorData!.data[indexPath.section].statusLocked = !loadedDoorData!.data[indexPath.section].statusLocked
         
         boolSwitcher = !boolSwitcher
         //The timer simulates the delay of the api call
@@ -245,34 +254,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             self.tableView.reloadSections([indexPath.section], with: .top)
         })
     }
-    
-    //MARK: - Load API data
-    /*
-     This method loads and decodes data from the data.json file located at the root of the project.
-     However, the method also simulates uploading data from the server via the API with a small delay,
-     which is created with the help of a timer. The animation stops after the data is loaded
-     */
-    private func loadAPIData() {
-        guard let path = Bundle.main.path(forResource: "data",
-                                          ofType: "json") else {
-            return
-        }
-        let url = URL(filePath: path)
-        do {
-            let jsonData = try Data(contentsOf: url)
-            guard let dataResult = try JSONDecoder().decode(Result?.self, from: jsonData) else {
-                return
-            }
-            timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { _ in
-                self.loadedAPIData = dataResult
-                self.activityIndicator.stopAnimating()
-                self.tableView.reloadData()
-            })
-        }
-        catch {
-            print("Error \(error)")
-        }
-    }
+
 }
 
 
