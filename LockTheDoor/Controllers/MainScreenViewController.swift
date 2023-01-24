@@ -35,7 +35,6 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     private let passwordButton = UIButton()
     private let tableView = UITableView()
     private var loadedDoorData: DoorData?
-    private let cell = TableCellView()
     private var timer = Timer()
     private var boolSwitcher = false
     private let bottomFogEffectView = UIView()
