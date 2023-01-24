@@ -7,11 +7,11 @@
 
 import Foundation
 
-class APIManager {
-    static let shared = APIManager()
+struct APIManager {
+    static var shared = APIManager()
     var timer = Timer()
     // This method loads and decodes data from the data.json file located at the root of the project.
-    func getDoorData(completion: @escaping (DoorData) -> Void) {
+    mutating func getDoorData(completion: @escaping (DoorData) -> Void) {
         guard let path = Bundle.main.path(forResource: "data",
                                             ofType: "json") else {
             return
