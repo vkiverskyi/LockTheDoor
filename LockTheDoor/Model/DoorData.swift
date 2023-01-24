@@ -1,18 +1,17 @@
 //
-//  APIData.swift
+//  DoorData.swift
 //  LockTheDoor
 //
 //  Created by Vitalii Kiverskyi on 14.01.2023.
 //
 
 import Foundation
-import UIKit
 
-struct Result: Codable {
-    var data: [ResultItem]
+struct DoorData: Codable {
+    var data: [DoorDataItems]
 }
 
-struct ResultItem: Codable {
+struct DoorDataItems: Codable {
     let doorName: String
     let doorLocationName: String
     var statusLocked: Bool

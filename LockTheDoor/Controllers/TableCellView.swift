@@ -117,7 +117,7 @@ class TableCellView: UITableViewCell {
     }
     
     //This method is responsible for which cell will be set in the table according to its status
-    func chooseAndSetupDoorCellToTable(cell: ResultItem, checkSwitcher: Bool, currentDoorStatus: Bool) {
+    func chooseAndSetupDoorCellToTable(cell: DoorDataItems, checkSwitcher: Bool, currentDoorStatus: Bool) {
         //The data about the names and location of the doors are assigned directly from the data from the server
         doorName.text = cell.doorName
         doorLocationName.text = cell.doorLocationName
