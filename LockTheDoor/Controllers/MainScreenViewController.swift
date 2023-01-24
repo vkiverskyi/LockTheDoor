@@ -25,7 +25,6 @@ import UIKit
  Constraints are set using SnapKit. Also some of the constraints were given according to iPhone SE 3rd screen size.
  */
 class MainScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
     // MARK: - Instances
     private let companyLogo = UIImage()
     private let settingsButton = UIButton()
@@ -35,10 +34,10 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     private let passwordButton = UIButton()
     private let tableView = UITableView()
     private var loadedDoorData: DoorData?
-    private var timer = Timer()
+    private let timer = Timer()
     private var boolSwitcher = false
     private let bottomFogEffectView = UIView()
-    private var activityIndicator = UIActivityIndicatorView()
+    private let activityIndicator = UIActivityIndicatorView()
 
     //MARK: - View lifecycle
     override func viewDidLoad() {
@@ -52,7 +51,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
          Also stops simulates uploading data from the server via the API
          by stop animating activity indicator.
          */
-        APIManager.shared.getDoorData { [weak self] data in
+         APIManager.shared.getDoorData { [weak self] data in
             guard let self else { return }
                 self.loadedDoorData = data
                 self.tableView.reloadData()
@@ -249,7 +248,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         
         boolSwitcher = !boolSwitcher
         //The timer simulates the delay of the api call
-        timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { _ in
+        Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { _ in
             self.tableView.reloadSections([indexPath.section], with: .top)
         })
     }

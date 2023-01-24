@@ -9,7 +9,7 @@ import Foundation
 
 struct APIManager {
     static var shared = APIManager()
-    var timer = Timer()
+    let timer = Timer()
     // This method loads and decodes data from the data.json file located at the root of the project.
     mutating func getDoorData(completion: @escaping (DoorData) -> Void) {
         guard let path = Bundle.main.path(forResource: "data",
@@ -23,7 +23,7 @@ struct APIManager {
                 return
             }
             //Simulates uploading data from the server via the API with a small delay by timer
-            timer = Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { _ in
+            Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { _ in
                 completion(dataResult)
             })
         }

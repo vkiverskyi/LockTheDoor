@@ -109,16 +109,9 @@ class TableCellView: UITableViewCell {
     }
     
     //MARK: - Setup cell with received data
-    enum DoorStatuses {
-        case locking
-        case unlocking
-        case locked
-        case unlocked
-    }
-    
     //This method is responsible for which cell will be set in the table according to its status
     func chooseAndSetupDoorCellToTable(cell: DoorDataItems, checkSwitcher: Bool, currentDoorStatus: Bool) {
-        //The data about the names and location of the doors are assigned directly from the data from the server
+        //Data about name and location of the doors are assigned directly from the decoded .json file
         doorName.text = cell.doorName
         doorLocationName.text = cell.doorLocationName
         
@@ -130,33 +123,41 @@ class TableCellView: UITableViewCell {
         }
     }
     
+    enum DoorStatuses {
+        case unlocking
+        case locking
+        case locked
+        case unlocked
+    }
     //This method is responsible for filling the cell with data
     private func setupDoorCellWithData(status: DoorStatuses) {
-        securityStatusIcon.image = Images.securityInstallingIcon
-        doorStatusIcon.image = Images.doorLoadingIcon
-        switch status {
-        //In this switch parameters are the same for doors with two different statuses
-        case .locking, .unlocking:
-            securityStatusIcon.image = Images.securityInstallingIcon
-            doorStatusIcon.image = Images.doorLoadingIcon
-            didTapLockUnlockButton.setTitleColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0.17), for: .normal)
-        case .locked, .unlocked:
-            didTapLockUnlockButton.setTitleColor(UIColor(red: 0, green: 0.267, blue: 0.545, alpha: 0.5), for: .normal)
-        }
         //And this switch parameters are different for each status separately
         switch status {
         case .unlocking:
+            configForUnlockingAndLockingStatus()
             didTapLockUnlockButton.setTitle("Unlocking...", for: .normal)
         case .locking:
+            configForUnlockingAndLockingStatus()
             didTapLockUnlockButton.setTitle("Locking...", for: .normal)
         case .locked:
+            configForLockedAndUnlockedStatus()
             didTapLockUnlockButton.setTitle("Locked", for: .normal)
             securityStatusIcon.image = Images.securityActivatedIcon
             doorStatusIcon.image = Images.doorLockedIcon
         case .unlocked:
+            configForLockedAndUnlockedStatus()
             didTapLockUnlockButton.setTitle("Unlocked", for: .normal)
             securityStatusIcon.image = Images.securityUnactivatedIcon
             doorStatusIcon.image = Images.doorUnlockedIcon
+        }
+
+        func configForUnlockingAndLockingStatus() {
+            securityStatusIcon.image = Images.securityInstallingIcon
+            doorStatusIcon.image = Images.doorLoadingIcon
+            didTapLockUnlockButton.setTitleColor(UIColor(red: 0, green: 0, blue: 0, alpha: 0.17), for: .normal)
+        }
+        func configForLockedAndUnlockedStatus() {
+            didTapLockUnlockButton.setTitleColor(UIColor(red: 0, green: 0.267, blue: 0.545, alpha: 0.5), for: .normal)
         }
     }
 }
