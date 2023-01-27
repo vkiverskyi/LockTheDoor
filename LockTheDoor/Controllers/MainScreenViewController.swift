@@ -25,6 +25,7 @@ import UIKit
  Constraints are set using SnapKit. Also some of the constraints were given according to iPhone SE 3rd screen size.
  */
 class MainScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
     // MARK: - Instances
     private let companyLogo = UIImage()
     private let settingsButton = UIButton()
@@ -35,10 +36,11 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     private let tableView = UITableView()
     private var loadedDoorData: DoorData?
     private let timer = Timer()
-    private var boolSwitcher = false
+    private var boolSwitcher = true
+    private var doorStatusesEnum: DoorStatus?
     private let bottomFogEffectView = UIView()
     private let activityIndicator = UIActivityIndicatorView()
-
+    
     //MARK: - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,6 +74,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         setupActivityIndicator()
     }
     
+    //MARK: - setupActivityIndicator()
     private func setupActivityIndicator() {
         view.addSubview(activityIndicator)
         activityIndicator.style = .medium
@@ -96,9 +99,10 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         gradient.endPoint = CGPoint(x: 0.0, y: 0.6)
         bottomFogEffectView.layer.addSublayer(gradient)
     }
-
+    
+    //MARK: - setupCompanyLogo()
     private func setupCompanyLogo() {
-        let image = UIImageView(image: Images.logoIcon)
+        let image = UIImageView(image: ImageConst.logoIcon)
         view.addSubview(image)
         image.snp.makeConstraints { make in
             // Better top position for company logo in iPhone SE 3rd
@@ -111,9 +115,10 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    //MARK: - setupSettingsButton()
     private func setupSettingsButton() {
         view.addSubview(settingsButton)
-        settingsButton.setImage(Images.settingsIcon, for: .normal)
+        settingsButton.setImage(ImageConst.settingsIcon, for: .normal)
         settingsButton.snp.makeConstraints { make in
             // Better top position for setttings button in iPhone SE 3rd
             if UIDevice().type == .iPhoneSE3 {
@@ -125,18 +130,20 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    //MARK: - setupGreetingsLabel()
     private func setupGreetingsLabel() {
         view.addSubview(greetingsLabel)
-        greetingsLabel.text = "Welcome"
-        greetingsLabel.font = UIFont(name: Fonts.customFontBold, size: 35)
+        greetingsLabel.text = TextLabelConst.greetings
+        greetingsLabel.font = UIFont(name: FontConst.customFontBold, size: 35)
         greetingsLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(157)
             make.left.equalToSuperview().inset(24)
         }
     }
     
+    //MARK: - setupHomeIcon()
     private func setupHomeIcon() {
-        let image = UIImageView(image: Images.homeIcon)
+        let image = UIImageView(image: ImageConst.homeIcon)
         view.addSubview(image)
         image.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(108)
@@ -144,10 +151,11 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    //MARK: - setupTypeOfVerificationLabel()
     private func setupTypeOfVerificationLabel() {
         view.addSubview(typeOfVerificationLabel)
-        typeOfVerificationLabel.text = "My doors"
-        typeOfVerificationLabel.font = UIFont(name: Fonts.customFontBold, size: 20)
+        typeOfVerificationLabel.text = TextLabelConst.typeOfVerification
+        typeOfVerificationLabel.font = UIFont(name: FontConst.customFontBold, size: 20)
         typeOfVerificationLabel.snp.makeConstraints { make in
             // Better top position for type of verif. label in iPhone SE 3rd
             if UIDevice().type == .iPhoneSE3 {
@@ -159,9 +167,10 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    //MARK: - setupPasswordButton()
     private func setupPasswordButton() {
         view.addSubview(passwordButton)
-        passwordButton.setImage(Images.passwordIcon, for: .normal)
+        passwordButton.setImage(ImageConst.passwordIcon, for: .normal)
         passwordButton.backgroundColor = view.backgroundColor
         passwordButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(15)
@@ -174,7 +183,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
-    // MARK: - setup TableView
+    // MARK: - setupTableView()
     let cellIdenifier = "lockControlCellIdentifier"
     
     private func setupTableView() {
@@ -184,7 +193,7 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         tableView.dataSource = self
         tableView.rowHeight = 117
         tableView.separatorColor = .clear
-        tableView.register(TableCellView.self, forCellReuseIdentifier: cellIdenifier)
+        tableView.register(TableCellViewController.self, forCellReuseIdentifier: cellIdenifier)
     }
     
     private func setupTableViewConstraints() {
@@ -217,9 +226,18 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdenifier) as! TableCellView
-        let dataForCell = loadedDoorData?.data[indexPath.section]
-        cell.chooseAndSetupDoorCellToTable(cell: dataForCell!, checkSwitcher: boolSwitcher, currentDoorStatus: dataForCell!.statusLocked)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdenifier) as! TableCellViewController
+        let doorData = loadedDoorData!.data[indexPath.section]
+        switch (doorData.statusLocked, boolSwitcher) {
+        case (true, true):
+            doorStatusesEnum = .locked
+        case (false, true):
+            doorStatusesEnum = .unlocked
+            
+        default: break
+        }
+        // Method which transfer data to TableCellViewController
+        cell.setupTableCellViews(data: doorData, currentDoorStatus: doorStatusesEnum!)
         return cell
     }
     
@@ -227,32 +245,40 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         mockAPICall(tableView: tableView, indexPath: indexPath)
     }
     
+    func tlk() {
+        print("works")
+    }
+    
     //MARK: - simulate API call
     /*
      This method simulates an API call. It is called after clicking on a table cell.
      Next, the position of the switcher (boolSwitcher) will change to the opposite.
-     According to this, the cell takes the status of "locking" or "unlocking".
-     After that, there is a delay with the help of a timer. And then the cell is assigned the "locked"/nlocked status.
+     According to this, the cell takes the status of "unlocking" or "locking".
+     After that, there is a delay with the help of a timer. And then the cell is assigned the "locked"/unlocked status.
      Updating the data in the cell is done using the reloadSections() method.
      */
-    private func mockAPICall(tableView: UITableView, indexPath: IndexPath) {
+    func mockAPICall(tableView: UITableView, indexPath: IndexPath) {
         /*
-         This switch is needed in the chooseAndSetupDoorToCell() method of the TableCellView class
+         This if/else is needed in the setupTableCellViews() method
          in order to set the necessary door parameters for the cell
          */
-        boolSwitcher = !boolSwitcher
+        if loadedDoorData!.data[indexPath.section].statusLocked {
+            doorStatusesEnum = .unlocking
+            boolSwitcher = !boolSwitcher
+        } else {
+            doorStatusesEnum = .locking
+            boolSwitcher = !boolSwitcher
+        }
+        
         tableView.reloadSections([indexPath.section] , with: .fade)
         
-        // This assignment simulates a "PUT" request, which should change the status of the door: open/closed
+        // This assignment simulates a "PUT" request, which should change the status of the door: locked/unlocked
         loadedDoorData!.data[indexPath.section].statusLocked = !loadedDoorData!.data[indexPath.section].statusLocked
-        
         boolSwitcher = !boolSwitcher
+        
         //The timer simulates the delay of the api call
         Timer.scheduledTimer(withTimeInterval: 2, repeats: false, block: { _ in
             self.tableView.reloadSections([indexPath.section], with: .top)
         })
     }
-
 }
-
-

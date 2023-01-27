@@ -318,12 +318,13 @@ unrecognized       = "?unrecognized?"
             "AppleTV11,1" : .AppleTV2_4K
         ]
     
-        guard let mcode = modelCode, let map = String(validatingUTF8: mcode), let model = modelMap[map] else { return Model.unrecognized }
+        guard let mcode = modelCode,
+                let map = String(validatingUTF8: mcode),
+                let model = modelMap[map] else { return Model.unrecognized }
         if model == .simulator {
             if let simModelCode = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
-                if let simMap = String(validatingUTF8: simModelCode), let simModel = modelMap[simMap] {
-                    return simModel
-                }
+                if let simMap = String(validatingUTF8: simModelCode),
+                    let simModel = modelMap[simMap] { return simModel }
             }
         }
         return model

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F819AE2829819089000C1EF8 /* DoorStatusEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F819AE2729819089000C1EF8 /* DoorStatusEnums.swift */; };
 		F828F04D29801D4A00E9EF37 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F828F04C29801D4A00E9EF37 /* APIManager.swift */; };
 		F8B6E8C5296AD87500E2B497 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6E8C4296AD87500E2B497 /* AppDelegate.swift */; };
 		F8B6E8C7296AD87500E2B497 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6E8C6296AD87500E2B497 /* SceneDelegate.swift */; };
@@ -17,14 +18,15 @@
 		F8B6E8E4296AEAF300E2B497 /* Sk-Modernist-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F8B6E8E1296AEAF300E2B497 /* Sk-Modernist-Bold.otf */; };
 		F8B6E8E5296AEAF300E2B497 /* Sk-Modernist-Mono.otf in Resources */ = {isa = PBXBuildFile; fileRef = F8B6E8E2296AEAF300E2B497 /* Sk-Modernist-Mono.otf */; };
 		F8B6E8E6296AEAF300E2B497 /* Sk-Modernist-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F8B6E8E3296AEAF300E2B497 /* Sk-Modernist-Regular.otf */; };
-		F8B6E8E8296B01A200E2B497 /* Apple Devices Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6E8E7296B01A200E2B497 /* Apple Devices Enums.swift */; };
+		F8B6E8E8296B01A200E2B497 /* AppleDeviceModelsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6E8E7296B01A200E2B497 /* AppleDeviceModelsEnums.swift */; };
 		F8B6E8EE29703F7D00E2B497 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6E8ED29703F7D00E2B497 /* Constants.swift */; };
-		F8B6E8F929708C6400E2B497 /* TableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6E8F829708C6400E2B497 /* TableCellView.swift */; };
+		F8B6E8F929708C6400E2B497 /* TableCellViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6E8F829708C6400E2B497 /* TableCellViewController.swift */; };
 		F8B6E8FF2972EAE900E2B497 /* data.json in Resources */ = {isa = PBXBuildFile; fileRef = F8B6E8FE2972EAE900E2B497 /* data.json */; };
 		F8B6E9012972EE5000E2B497 /* DoorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8B6E9002972EE5000E2B497 /* DoorData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F819AE2729819089000C1EF8 /* DoorStatusEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorStatusEnums.swift; sourceTree = "<group>"; };
 		F828F04C29801D4A00E9EF37 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		F8B6E8C1296AD87500E2B497 /* LockTheDoor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockTheDoor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F8B6E8C4296AD87500E2B497 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -36,9 +38,9 @@
 		F8B6E8E1296AEAF300E2B497 /* Sk-Modernist-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sk-Modernist-Bold.otf"; sourceTree = "<group>"; };
 		F8B6E8E2296AEAF300E2B497 /* Sk-Modernist-Mono.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sk-Modernist-Mono.otf"; sourceTree = "<group>"; };
 		F8B6E8E3296AEAF300E2B497 /* Sk-Modernist-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Sk-Modernist-Regular.otf"; sourceTree = "<group>"; };
-		F8B6E8E7296B01A200E2B497 /* Apple Devices Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Apple Devices Enums.swift"; sourceTree = "<group>"; };
+		F8B6E8E7296B01A200E2B497 /* AppleDeviceModelsEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleDeviceModelsEnums.swift; sourceTree = "<group>"; };
 		F8B6E8ED29703F7D00E2B497 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F8B6E8F829708C6400E2B497 /* TableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellView.swift; sourceTree = "<group>"; };
+		F8B6E8F829708C6400E2B497 /* TableCellViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCellViewController.swift; sourceTree = "<group>"; };
 		F8B6E8FE2972EAE900E2B497 /* data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = data.json; path = LockTheDoor/Resources/data.json; sourceTree = SOURCE_ROOT; };
 		F8B6E9002972EE5000E2B497 /* DoorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoorData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,8 +78,8 @@
 			children = (
 				F8B6E8DA296AD97E00E2B497 /* Controllers */,
 				F8B6E8EA29702F6400E2B497 /* Model */,
-				F8B6E8D8296AD8A400E2B497 /* Application */,
 				F8B6E8EF29704FAE00E2B497 /* Utilities */,
+				F8B6E8D8296AD8A400E2B497 /* Application */,
 				F8B6E8D9296AD8B200E2B497 /* Resources */,
 			);
 			path = LockTheDoor;
@@ -108,7 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				F8B6E8DB296ADA7000E2B497 /* MainScreenViewController.swift */,
-				F8B6E8F829708C6400E2B497 /* TableCellView.swift */,
+				F8B6E8F829708C6400E2B497 /* TableCellViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -128,6 +130,7 @@
 			children = (
 				F828F04C29801D4A00E9EF37 /* APIManager.swift */,
 				F8B6E9002972EE5000E2B497 /* DoorData.swift */,
+				F819AE2729819089000C1EF8 /* DoorStatusEnums.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -135,7 +138,7 @@
 		F8B6E8EF29704FAE00E2B497 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				F8B6E8E7296B01A200E2B497 /* Apple Devices Enums.swift */,
+				F8B6E8E7296B01A200E2B497 /* AppleDeviceModelsEnums.swift */,
 				F8B6E8ED29703F7D00E2B497 /* Constants.swift */,
 			);
 			path = Utilities;
@@ -222,11 +225,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F828F04D29801D4A00E9EF37 /* APIManager.swift in Sources */,
+				F819AE2829819089000C1EF8 /* DoorStatusEnums.swift in Sources */,
 				F8B6E8C5296AD87500E2B497 /* AppDelegate.swift in Sources */,
 				F8B6E9012972EE5000E2B497 /* DoorData.swift in Sources */,
 				F8B6E8EE29703F7D00E2B497 /* Constants.swift in Sources */,
-				F8B6E8E8296B01A200E2B497 /* Apple Devices Enums.swift in Sources */,
-				F8B6E8F929708C6400E2B497 /* TableCellView.swift in Sources */,
+				F8B6E8E8296B01A200E2B497 /* AppleDeviceModelsEnums.swift in Sources */,
+				F8B6E8F929708C6400E2B497 /* TableCellViewController.swift in Sources */,
 				F8B6E8DC296ADA7000E2B497 /* MainScreenViewController.swift in Sources */,
 				F8B6E8C7296AD87500E2B497 /* SceneDelegate.swift in Sources */,
 			);
