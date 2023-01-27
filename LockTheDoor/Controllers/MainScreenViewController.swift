@@ -245,10 +245,6 @@ class MainScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         mockAPICall(tableView: tableView, indexPath: indexPath)
     }
     
-    func tlk() {
-        print("works")
-    }
-    
     //MARK: - simulate API call
     /*
      This method simulates an API call. It is called after clicking on a table cell.
