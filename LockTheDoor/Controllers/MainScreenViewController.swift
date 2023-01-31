@@ -27,10 +27,8 @@ import UIKit
 class MainScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - Instances
-    private let companyLogo = UIImage()
     private let settingsButton = UIButton()
     private let greetingsLabel = UILabel()
-    private let homeIcon = UIImage()
     private let typeOfVerificationLabel = UILabel()
     private let passwordButton = UIButton()
     private let tableView = UITableView()
